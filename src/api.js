@@ -1,6 +1,6 @@
 import axios from 'axios'
 export const fetchToken=async ()=>{
-   try{ console.log("calling api")
+   try{ //console.log("calling api")
   
    const config={ method:"POST",
    
@@ -14,7 +14,7 @@ export const fetchToken=async ()=>{
   }
   //var a="hoho"
   return axios("http://localhost:5000/api/user/login",config).then((res)=>{
-  console.log("after api call   "+JSON.stringify(res.data.token))
+ // console.log("after api call   "+JSON.stringify(res.data.token))
      return JSON.stringify(res.data.token)})
      
    //return a
@@ -25,15 +25,16 @@ export const fetchToken=async ()=>{
 }
 
 export const fetchUsers=async (action)=>{
-   try{ console.log("calling  user api")
+   try{ 
+     //console.log("calling  user api")
    const token=localStorage.getItem("token")
-   console.log("checking token   "+token)
+   //console.log("checking token   "+token)
    const off=Number(Math.floor(action.offset/action.limit)+1)
    return axios.get(`http://localhost:3000/users?_page=${off}&_limit=${action.limit}`, {
       
   },  {headers: { "Content-Type": "application/json" , "authorization":JSON.parse(token)
 }}).then((res) => {
-    console.log(res);
+    //console.log(res);
    return res.data})
    }
    catch(e){
@@ -43,9 +44,10 @@ export const fetchUsers=async (action)=>{
 
 
 export const deleteUser=async (id)=>{
-  try{ console.log("calling  user api")
+  try{ 
+    //console.log("calling  user api")
   const token=localStorage.getItem("token")
-  console.log("checking token   "+token)
+ // console.log("checking token   "+token)
   const config={ method:"DELETE",
   
   headers:{"Content-Type":"application/json",
@@ -56,7 +58,8 @@ export const deleteUser=async (id)=>{
  }
  //var a="hoho"
  return axios(`http://localhost:3000/users/${id}`,config).then((res)=>{
- console.log("after api call   "+JSON.stringify(res.data))
+ //console.log("after api call   "+JSON.stringify(res.data))
+
     return res.data})
     
   //return a
@@ -94,7 +97,7 @@ export const addUser=async (user)=>{
       age:user.age
   },  {headers: { "Content-Type": "application/json" , "authorization":JSON.parse(token)
 }}).then((res) => {
-    console.log(res);
+    //console.log(res);
    return res.data})
   
   }
@@ -105,9 +108,10 @@ export const addUser=async (user)=>{
 }
 
 export const editUser=async (user)=>{
-  try{ console.log("error  "+user)
+  try{ 
+    //console.log("error  "+user)
     const token=localStorage.getItem("token")
-    console.log("error 2 "+token)
+    //console.log("error 2 "+token)
      return axios.put(`http://localhost:3000/users/${user.id}`, {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -117,7 +121,7 @@ export const editUser=async (user)=>{
       age: user.age
   },  {headers: { "Content-Type": "application/json" , "authorization":JSON.parse(token)
 }}).then((res) => {
-    console.log(res.data);
+   // console.log(res.data);
    return res.data})
   
   }

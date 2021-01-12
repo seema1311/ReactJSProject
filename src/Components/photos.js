@@ -1,5 +1,6 @@
 import React from 'react'
 function Photo(props){
+  
     function updateProfile(index){
         const id=`image${index}`
       const x=document.getElementById(id).src; 
@@ -19,4 +20,4 @@ function Photo(props){
     
     
 }
-export default Photo
+export default React.memo(Photo)

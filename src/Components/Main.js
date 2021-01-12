@@ -10,88 +10,81 @@ import def from "../photos/default.png";
 import ErrorBoundary from './error'
 const Users=lazy(()=>import('./users'))
 
-class Main extends Component{
-        isLogin=false;
-        currentUser={
-        id:"",
-        username:"",
-        password: "",
-        fullname: "",
-        photo: ""
-        }
-
-   componentDidUpdate(){
-           console.log("DidUpdate   "+this.props.users)
-           localStorage.setItem("token",this.props.token)
-   }
-   userUpdateProfile(x){
-        
-        const currUser=this.currentUser.username;
-        this.props.users.map(user => {if(user.username===currUser)
+function Main(props){
+        console.log("Main")
+        const [isLogin,setIsLogin]=React.useState(false);
+        const [currentUser,setCurrentUser]=React.useState({
+                id:"",
+                username:"",
+                password: "",
+                fullname: "",
+                photo: ""
+                })
+                React.useEffect(() => {
+                        console.log("useEffect")
+                       localStorage.setItem("token",props.token)
+                        })
+function userUpdateProfile(x){
+        const currUser=currentUser.username;
+        props.users.map(user => {if(user.username===currUser)
                                            user.photo=x
         })
-        this.currentUser.photo=x;
-        console.log(this.props.users)
+        setCurrentUser({
+                id:"",
+                username:"",
+                password: "",
+                fullname: "",
+                photo:x   
+        })    
     }
-    userUpdatePass(x){
-        
-        const currUser=this.currentUser.username;
-        this.props.users.map(user => {if(user.username===currUser)
-                                           user.password=x
-        })
-    }
-    userUpdateUser(x){
-        
-        const currUser=this.currentUser.username;
-        this.props.users.map(user => {if(user.username===currUser)
-                                           user.username=x
-        })
-    }
-    userLogin(user,pass){
-            console.log(user)
-            this.props.requestApiToken();
+function userLogin(user,pass){
             
-            this.isLogin=true;
-            this.currentUser.photo=def;
-            this.currentUser.username=user;
+            props.requestApiToken();
+            
+            setIsLogin(true)
+            setCurrentUser({
+                id:"",
+                username:user,
+                password: "",
+                fullname: "",
+                photo:def  
+        })
             return true;
    }
-   render()
-  {      const { match, location, history } = this.props
+   const logout= React.useCallback(()=>{
+           console.log("logging out")
+           setIsLogin(false);
+        localStorage.removeItem("token");
+        props.history.push("/")},[])
+  
+  const getuser=React.useCallback(()=>{props.requestApiUsers(0,5)},[])
      return (<div>
         <ErrorBoundary>
-             {!this.isLogin?<div className="login"></div>:<TopFooter user={this.currentUser} onLogout={()=>{
-                     this.isLogin=false;
-                     localStorage.removeItem("token")
-                     this.currentUser={
-                        id:"",
-                        username:"",
-                        password: "",
-                        fullname: "",
-                        photo: ""
-                     }
-                     history.push("/")
-             }}/>}
+             {!isLogin?<div className="login"></div>:<TopFooter user={currentUser} onLogout={logout}/>}
              <Route exact path ="/" render= {({history})=> (
-             <Login data={this.props.users} onLogin={(user,pass)=>{
-                     if(this.userLogin(user,pass))
+             <Login data={props.users} onLogin={(user,pass)=>{
+                     if(userLogin(user,pass))
                      history.push("/home")
              }}/>
              )}/>
              <Route exact path ="/user/register" render= {({history})=> (
-                <Register onRegister={(user)=>{this.props.requestAddUser(user);history.push("/home")}}/>
+                <Register onRegister={(user)=>{props.requestAddUser(user);history.push("/home")}}/>
                 )}/>
                   
              <Route exact path ="/home" render= {({history})=> (
+                     <div className="middle">
                 <Home />
+                </div>
                 )}/>  
                 <Route exact path ="/Profile" render= {({history})=> (
-                        <Photo posts={_photos}  onUpdate={(x)=>{this.userUpdateProfile(x);history.push("/home")}}/>
+                        <Photo posts={_photos}  onUpdate={(x)=>{userUpdateProfile(x);history.push("/home")}}/>
                         )}/> 
                 <Route exact path ="/users" render= {({history})=> (
                 
-                <Suspense fallback={<div>Loading....</div>}>       
-                <Users onGetUsers={()=>{this.props.requestApiUsers(0,5)}}  {...this.props}/>
+                <Suspense fallback={<div>Loading....</div>}>  
+                    
+                <Users onGetUsers={getuser}  {...props}/>
+                
                 </Suspense>
                 
                )}/> 
@@ -99,6 +92,6 @@ class Main extends Component{
              <div className="footer"></div>
              </ErrorBoundary>
              </div>)
-    }   
+      
 }
 export default Main

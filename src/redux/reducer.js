@@ -5,7 +5,7 @@ const initial={
   token:""
 }
 const postReducer=function users(state =initial , action){
-      console.log(`reducer call with ${action.type} and data ${JSON.stringify(action.user)}`);
+     // console.log(`reducer call with ${action.type} and data ${JSON.stringify(action.user)}`);
     // return state
      switch(action.type){
          case 'RECEIVE_REMOVE_USER': const afterDelete=state.users.filter(user=>user.id!=action.id)

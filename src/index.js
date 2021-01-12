@@ -10,7 +10,7 @@ import {Provider} from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import mySaga from './saga'
 
-console.log("index-file")
+//console.log("index-file")
 const sagaMiddleware=createSagaMiddleware()
 const store=createStore(rootReducer,undefined,applyMiddleware(sagaMiddleware))
 sagaMiddleware.run(mySaga)

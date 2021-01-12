@@ -1,3 +1,4 @@
+
 body {
     margin:0;
     padding: 0;
@@ -94,12 +95,10 @@ h4:hover{
     text-align: center;
   }
 
-  .middle{
-    margin-top: 120px;
-    margin-bottom: 100px;
-   max-width: 100%;    
-   text-align: center;
-}
+  
+
+
+
 .fade{
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
@@ -269,22 +268,44 @@ text-align: center;
   margin-top:0px;
   
 }
+.middle{
+  width:100%;
+  margin-left:200px;
+   margin-bottom: 100px;
+  max-width: 1000px;    
+ 
+  text-align: center;
+  display: flex;   
+}
 .pages{
-  width:80%;
-  margin-right: 10%;
-  margin-left: 10%;
+  width:100%;
+  position: relative;
+  margin-right:100px;
+  margin-top:120px;
+}
+.pagination{
+  position: fixed;
+ margin-bottom: 100px;
+ margin-top:300px;
+  right:0;
+
+}
+.Sidebar{
+  height: 100%;
+  position: fixed;
+  left:0;
+  margin-top:130px;
+  width:30%;
   
-  padding: 0;
 }
 table{
   height: 100px;
   width:80%;
-  margin-right: 10%;
-  margin-left: 10%;
+  margin-left:20%;
   border-radius: 2px;
   border-style: solid;
   text-align: center;
-  margin-top: 0px;
+  margin-top: 200px;
   
 }
 
@@ -312,12 +333,13 @@ tbody{
 
 
 .form1-show {
-  max-width: 100%;
+  position: fixed;
+  max-width: 150px;
   background-color:white;
-  margin-top: 140px;
- margin-left: 40%;
-  margin-right: 40%;
-  margin-bottom: 10px;
+  top:150px;
+  right:0;
+ 
+ 
 }
 
 .form1-show button{
@@ -330,7 +352,7 @@ tbody{
   color: white;
   font-size: 14px;
   cursor: pointer;
-  margin-top:10px;
+  
   
 }
 .form1-show button:hover{
@@ -374,6 +396,11 @@ tbody{
   font-weight: bold;
 }
 
-
+.hambug{
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
 
 

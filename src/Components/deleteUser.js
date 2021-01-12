@@ -3,12 +3,8 @@ function Delete(props){
     
         const old=React.useRef();
         function handleUser(){
-       
-            
             const new1=String(old.current.value)
-            
-            props.onDelete(new1)
-               
+             props.onDelete(new1)    
         }
      
         return (<div>

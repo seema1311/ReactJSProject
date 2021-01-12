@@ -3,10 +3,10 @@ import {REQUEST_API_DATA,REQUEST_API_USERS,REQUEST_REMOVE_USER,REQUEST_ADD_USER,
 import {fetchToken,fetchUsers,deleteUser,addUser,editUser} from "./api"
 
 function* getApiToken(action){
-    console.log("hey i am saga")
+    //console.log("hey i am saga")
     try{
         const token=yield call(fetchToken);
-        console.log("token token  "+token)
+       // console.log("token token  "+token)
         yield put(receiveApiToken(token));
     }
     catch(e){
@@ -14,10 +14,10 @@ function* getApiToken(action){
     }
 }
 function* getApiUsers(action){
-    console.log("hey i am user saga "+JSON.stringify(action))
+    //console.log("hey i am user saga "+JSON.stringify(action))
     try{
         const users=yield call(fetchUsers,action);
-        console.log("users  "+users)
+      //  console.log("users  "+users)
         yield put(receiveApiUsers(users));
     }
     catch(e){
@@ -25,10 +25,10 @@ function* getApiUsers(action){
     }
 }
 function* getRemoveUser(action){
-    console.log("hey i am user saga")
+   // console.log("hey i am user saga")
     try{
         const user=yield call(deleteUser,action.id);
-        console.log("users  "+user.id)
+      //  console.log("users  "+user.id)
         yield put(receiveRemoveUser(action.id));
     }
     catch(e){
@@ -36,10 +36,10 @@ function* getRemoveUser(action){
     }
 }
 function* getAddUser(action){
-    console.log("hey i am user saga")
+   // console.log("hey i am user saga")
     try{
         const user=yield call(addUser,action.user);
-        console.log("users  "+user)
+    //    console.log("users  "+user)
         yield put(receiveAddUser(user));
     }
     catch(e){
@@ -47,10 +47,10 @@ function* getAddUser(action){
     }
 }
 function* getEditUser(action){
-    console.log("hey i am user saga"+JSON.stringify(action.user))
+    //console.log("hey i am user saga"+JSON.stringify(action.user))
     try{
         const user=yield call(editUser,action.user);
-        console.log("users  "+user)
+       // console.log("users  "+user)
 
         yield put(receiveEditUser(user));
 

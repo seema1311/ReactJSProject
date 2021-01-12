@@ -3,13 +3,13 @@ import Pagination from './Pagination'
 import Update from "./update";
 import Popover from '@material-ui/core/Popover';
 import def from "../photos/default.png";
-var page=1;
+
 var off=0;
 var lim=5;
 
 function Users(props){
-        console.log("User function")
-        const [pag,setPag]=React.useState(page)
+        console.log("User render")
+        const [page,setPage]=React.useState(1)
         const [user,setUser]=React.useState({})
         const [update,setUpdate]=React.useState(false)
         const [button,setButton]=React.useState("show")
@@ -17,31 +17,33 @@ function Users(props){
         const [anchorEl, setAnchorEl] = React.useState(null);
        const [show,setShow]=React.useState(false)
         const handleClick = (event,user) => {
-            
+            console.log("click")
           setAnchorEl(true);
           setPopUser(user)
         };
       
         const handleClose = () => {
+          console.log("close")
           setAnchorEl(null);
           setPopUser({})
         };
       
         const open = Boolean(anchorEl);
         const id = open ? 'simple-popover' : undefined;
+
         const onPageChanged = React.useCallback(data => {
             const { currentPage, totalPages, pageLimit } = data;
             const offset = (currentPage - 1) * pageLimit;
             console.log("calling backend  "+JSON.stringify(data) )
-            page=currentPage;
-            setPag(page)
+            //page=currentPage;
+           setPage(currentPage)
             off=offset;
             lim=pageLimit;
             props.requestApiUsers(offset,pageLimit)
-          },[])
+          },[page,user,update,button,show])
 
         function handleShowUser(){
-                //props.onGetUsers();
+                console.log("show user "+show)
                 setShow(!show);
                 if(button==="show")
                 setButton("hide")
@@ -50,10 +52,10 @@ function Users(props){
         function handleUpdate(user) {
             setUser(user)
             setUpdate(true)
-        
+           
            
         }
-        return (<div>{console.log("page = ",page)}
+        return (<div> 
             {!update && <div>
             <div className="form1-show">
             <button  onClick={handleShowUser}>{button}</button></div>
@@ -122,7 +124,7 @@ function Users(props){
       </div>
       <div className="popList">
       <h6>Age:</h6>
-      <p> {popUser.age}</p>
+      <p> {popUser.age} {show}</p>
       </div>
       </div>
       <img className="photo" src={def} alt="profile" id="profile"/>
@@ -138,7 +140,7 @@ function Users(props){
                 </div>
             )   
 }
-export default Users
+export default React.memo(Users)
 
 
 

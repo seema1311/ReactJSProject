@@ -17,11 +17,13 @@ const range = (from, to, step = 1) => {
 
 function Pagination(props) {
   console.log("pagination")
+  
   const [currentPage, setCurrentPage] = React.useState(props.currPage)
   const [pageLimit,setPageLimit]=React.useState(props.pageLimit)
   const [totalRecords,setTotalRecords]=React.useState(props.totalRecords)
   const [pageNeighbours,setPageNeighbours]=React.useState(props.pageNeighbours)
   const [totalPages,setTotalPages]=React.useState(Math.ceil(totalRecords / pageLimit))
+  const [thisPage,setThisPage]=React.useState(currentPage)
   
    const gotoPage = (page) => {
       
@@ -42,16 +44,19 @@ function Pagination(props) {
    const handleClick = page => evt => {
       console.log("hadleclick")
       evt.preventDefault();
+      setThisPage(page)
       gotoPage(page);
     }
   const  handleMoveLeft = evt => {
       evt.preventDefault();
       console.log("handleMoveLeft")
+      setThisPage(currentPage-1)
       gotoPage(currentPage - 1);
     }
   const  handleMoveRight = evt => {
       evt.preventDefault();
       console.log("handleMoveRight")
+      setThisPage(currentPage+1)
       gotoPage(currentPage + 1);
     }
    const fetchPageNumbers = () => {
@@ -97,7 +102,7 @@ function Pagination(props) {
       },[currentPage])
     const pages = fetchPageNumbers();
     
-    console.log("pages   "+pages)
+   
       return(
           <Fragment>
             <nav aria-label="Countries Pagination">
@@ -109,6 +114,7 @@ function Pagination(props) {
                   <a className="page-link" href="#" aria-label="Previous" onClick={handleMoveLeft}>
                     <span aria-hidden="true">&laquo;</span>
                     <span className="sr-only">Previous</span>
+                    
                   </a>
                 </li>
       ||
@@ -117,6 +123,7 @@ function Pagination(props) {
                   <a className="page-link" href="#" aria-label="Next" onClick={handleMoveRight}>
                     <span aria-hidden="true">&raquo;</span>
                     <span className="sr-only">Next</span>
+                    
                   </a>
                 </li>
                 
@@ -124,7 +131,8 @@ function Pagination(props) {
                  
                  ||  
                    true && <li key={index} className={`page-item${ currentPage === page ? ' active' : ''}`}>
-                     <a className="page-link" href="#" onClick={handleClick(page) }>{ page }</a>
+                     <a className="page-link" href="#" onClick={handleClick(page) }>{ page }
+                     </a>
                    </li>
               )
    
@@ -143,4 +151,4 @@ Pagination.propTypes = {
   onPageChanged: PropTypes.func
 };
 
-export default Pagination;
+export default React.memo(Pagination);
