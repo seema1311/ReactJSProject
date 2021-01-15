@@ -19,38 +19,41 @@ h1{
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    margin-left: 5px;
-}
-
-.photo{
-    height: 120px;
-    width: 120px;
+    margin-right: 20px;
     
 }
 
+.photo{
+    height: 100px;
+    width: 100px;
+    margin-left: 5px;
+}
+
 .shiftright{
+ 
   text-align: right;
   margin-right: 10px;
   cursor: pointer;
-  position: relative;
+  width:33%;
 }
 .shiftmiddle{
-  width:40%;
+ 
   text-align: center;
   cursor: pointer;
   position: relative;
   display: flex;
-  margin-right: 100px;
+  width:33%;
   margin-top: 75px;
 }
 .links{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color:rgb(29, 189, 218);
-  width:300px;
+  
+  padding:10px;
   font-size: 14px;
   text-decoration: none;
   font-weight: bold;
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .links:hover{
   background-color: rgb(26, 15, 15);
@@ -70,12 +73,17 @@ h4:hover{
 }
 
 .shiftleft{
-  width:100%;
+  width:33%;
   text-align:left;
-  display:flex;
+  margin-left: 10px;
   color: rgb(0, 183, 255);
+  
 }
-
+.name{
+  
+  margin-top: 0px;
+  margin-left: 15px;
+}
 .footer {
     position: fixed;
     width: 100%;
@@ -169,10 +177,10 @@ h4:hover{
 button{
   flex-basis:48%;
   color: rgb(14, 11, 11);
-  font-size: 15px;
+  font-size: 20px;
   border: 2px solid #9da71c;
   line-height: 2;
-  padding:2px;
+ padding:0;
   background-color: rgb(185, 214, 238);
 }
 
@@ -269,42 +277,46 @@ text-align: center;
   
 }
 .middle{
-  width:100%;
-  margin-left:200px;
+  
+  
    margin-bottom: 100px;
   max-width: 1000px;    
- 
+  margin-top: 140px;
   text-align: center;
   display: flex;   
 }
 .pages{
   width:100%;
   position: relative;
-  margin-right:100px;
+  
   margin-top:120px;
 }
+
 .pagination{
+ 
   position: fixed;
  margin-bottom: 100px;
- margin-top:300px;
-  right:0;
-
+ margin-top:280px;
+ background-color: red;
+ right:1%;
+ 
+ margin-left:214px;
 }
 .Sidebar{
   height: 100%;
   position: fixed;
   left:0;
-  margin-top:130px;
-  width:30%;
+  margin-top: 60px;
+  width:214px;
   
 }
 table{
   height: 100px;
-  width:80%;
-  margin-left:20%;
+  width:98%;
+  margin-left: 1%;
+  margin-right: 1%;
   border-radius: 2px;
   border-style: solid;
-  text-align: center;
   margin-top: 200px;
   
 }
@@ -334,10 +346,10 @@ tbody{
 
 .form1-show {
   position: fixed;
-  max-width: 150px;
-  background-color:white;
-  top:150px;
-  right:0;
+  max-width: 80%;
+
+  top:307px;
+  right:1%;
  
  
 }
@@ -396,11 +408,30 @@ tbody{
   font-weight: bold;
 }
 
+
 .hambug{
+  
+  margin-top: 125px;
   width: 35px;
   height: 5px;
-  background-color: black;
-  margin: 6px 0;
+  font-size: 40px;
+  font-weight:bold;
+  padding: 9px;
+  margin: 0px 0;
+  margin-left: 5px;
+  
+}
+.hambug1{
+  
+  margin-top: 125px;
+  width: 35px;
+  height: 5px;
+  font-size: 40px;
+  font-weight:bold;
+  padding: 9px;
+  margin: 0px 0;
+  margin-left: 170px;
+  
 }
 
 

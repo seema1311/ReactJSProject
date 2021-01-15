@@ -10,8 +10,11 @@ import def from "../photos/default.png";
 import ErrorBoundary from './error'
 const Users=lazy(()=>import('./users'))
 
+export const CounterContext = React.createContext();
+
 function Main(props){
         console.log("Main")
+        const [count,setCount]=React.useState(1);
         const [isLogin,setIsLogin]=React.useState(false);
         const [currentUser,setCurrentUser]=React.useState({
                 id:"",
@@ -22,7 +25,10 @@ function Main(props){
                 })
                 React.useEffect(() => {
                         console.log("useEffect")
+                        if(isLogin)
                        localStorage.setItem("token",props.token)
+                       else
+                       localStorage.removeItem("token")
                         })
 function userUpdateProfile(x){
         const currUser=currentUser.username;
@@ -31,7 +37,7 @@ function userUpdateProfile(x){
         })
         setCurrentUser({
                 id:"",
-                username:"",
+                username:currentUser.username,
                 password: "",
                 fullname: "",
                 photo:x   
@@ -54,7 +60,7 @@ function userLogin(user,pass){
    const logout= React.useCallback(()=>{
            console.log("logging out")
            setIsLogin(false);
-        localStorage.removeItem("token");
+        
         props.history.push("/")},[])
   
   const getuser=React.useCallback(()=>{props.requestApiUsers(0,5)},[])
@@ -82,9 +88,14 @@ function userLogin(user,pass){
                 <Route exact path ="/users" render= {({history})=> (
                 
                 <Suspense fallback={<div>Loading....</div>}>  
-                    
+                <CounterContext.Provider value={
+                     {
+                             count,
+                             increment:()=>setCount(count+1)
+                     }   
+                }>
                 <Users onGetUsers={getuser}  {...props}/>
-                
+                </CounterContext.Provider>
                 </Suspense>
                 
                )}/> 

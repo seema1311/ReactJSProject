@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
-
+import { CounterContext } from "./Main";
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
 const range = (from, to, step = 1) => {
@@ -15,8 +16,21 @@ const range = (from, to, step = 1) => {
   return range;
 }
 
+const withCounter = Component => props => (
+  <CounterContext.Consumer>
+    {(value) => (
+      <Component {...props} value={value}>
+        {props.children}
+      </Component>
+    )}
+  </CounterContext.Consumer>
+);
+
+
 function Pagination(props) {
-  console.log("pagination")
+  const value=React.useContext(CounterContext)
+  const tok=useSelector(state=>state.token)
+  console.log("pagination "+JSON.stringify(value) +"  token"+ tok)
   
   const [currentPage, setCurrentPage] = React.useState(props.currPage)
   const [pageLimit,setPageLimit]=React.useState(props.pageLimit)
@@ -105,6 +119,7 @@ function Pagination(props) {
    
       return(
           <Fragment>
+          { console.log("HOC "+JSON.stringify(props))}
             <nav aria-label="Countries Pagination">
               <ul className="pagination">
                 
@@ -141,6 +156,7 @@ function Pagination(props) {
               </ul>
             </nav>
           </Fragment>
+          
         )
   }
 
@@ -151,4 +167,4 @@ Pagination.propTypes = {
   onPageChanged: PropTypes.func
 };
 
-export default React.memo(Pagination);
+export default withCounter(React.memo(Pagination));

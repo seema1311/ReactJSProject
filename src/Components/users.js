@@ -2,6 +2,8 @@ import React from 'react'
 import Pagination from './Pagination'
 import Update from "./update";
 import Popover from '@material-ui/core/Popover';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import def from "../photos/default.png";
 
 var off=0;
@@ -85,8 +87,8 @@ function Users(props){
                <td>{user.lastName}</td>
                <td>{user.role}</td>
                <td>{user.country}</td>
-               <td><button onClick={()=>handleUpdate(user)}>Update</button></td>
-               <td><button onClick={()=>{props.requestRemoveUser(user.id);props.requestApiUsers(off,lim);props.history.push("/users");}}>Delete</button></td>
+               <td><button onClick={()=>handleUpdate(user)}><EditIcon></EditIcon></button></td>
+               <td><button onClick={()=>{props.requestRemoveUser(user.id);props.requestApiUsers(off,lim);props.history.push("/users");}}><DeleteIcon>h</DeleteIcon></button></td>
                </tr>
                
                )     

@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import Main from './Main'
+import Pagination from "./Pagination";
 import * as action from '../redux/actions'
 import {bindActionCreators} from 'redux'
 import {withRouter} from 'react-router-dom'
