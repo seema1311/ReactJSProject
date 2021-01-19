@@ -42,7 +42,8 @@ function Users(props){
             off=offset;
             lim=pageLimit;
             props.requestApiUsers(offset,pageLimit)
-          },[page,user,update,button,show])
+            console.log("onpageChanged")
+          },[])
 
         function handleShowUser(){
                 console.log("show user "+show)
@@ -63,7 +64,7 @@ function Users(props){
             <button  onClick={handleShowUser}>{button}</button></div>
             {show && <div className="product-display">
             <div className="pages">
-            <Pagination currPage={page} totalRecords={50} pageLimit={5} pageNeighbours={1} onPageChanged={(data)=>{onPageChanged(data)}} />
+            <Pagination currPage={page} totalRecords={50} pageLimit={5} pageNeighbours={1} onPageChanged={onPageChanged} />
             </div>
                 <table>
                 <thead>

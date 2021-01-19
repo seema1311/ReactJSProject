@@ -18,7 +18,7 @@ const range = (from, to, step = 1) => {
 
 const withCounter = Component => props => (
   <CounterContext.Consumer>
-    {(value) => (
+    {(value) => ( 
       <Component {...props} value={value}>
         {props.children}
       </Component>
@@ -77,7 +77,6 @@ function Pagination(props) {
       const totalPages1 = totalPages;
       const currentPage1 = currentPage;
       const pageNeighbours1 = pageNeighbours;
-
       const totalNumbers = (pageNeighbours1 * 2) + 3;
       const totalBlocks = totalNumbers + 2;
   
@@ -119,7 +118,7 @@ function Pagination(props) {
    
       return(
           <Fragment>
-          { console.log("HOC "+JSON.stringify(props))}
+          { console.log("HOC "+(props.value.increment))}
             <nav aria-label="Countries Pagination">
               <ul className="pagination">
                 
@@ -164,7 +163,9 @@ Pagination.propTypes = {
   totalRecords: PropTypes.number.isRequired,
   pageLimit: PropTypes.number,
   pageNeighbours: PropTypes.number,
-  onPageChanged: PropTypes.func
+  onPageChanged: PropTypes.func,
+  count: PropTypes.number,
+  increment:PropTypes.func
 };
 
 export default withCounter(React.memo(Pagination));

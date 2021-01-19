@@ -9,6 +9,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import ViewListIcon from '@material-ui/icons/ViewList';
 function TopFooter(props){
    const [button,setButton]=React.useState(false);
        console.log("TopFooter")
@@ -49,6 +50,7 @@ function TopFooter(props){
                               <MenuItem icon={<VisibilityIcon/>}><Link to="/users" className="links">show Users</Link></MenuItem>
                               <MenuItem icon={<PersonAddIcon/>}><Link to="/user/register" className="links">add User</Link></MenuItem>
                               <MenuItem icon={<AccountCircleIcon />}><Link to="/Profile" className="links">change Profile</Link></MenuItem>
+                              <MenuItem icon={<ViewListIcon />}><Link to="/todo" className="links">Todos</Link></MenuItem>
                               <MenuItem icon={<ExitToAppIcon/>}><Link to="/" onClick={props.onLogout} className="links">Exit</Link></MenuItem>
                             </Menu>
                           </ProSidebar>}

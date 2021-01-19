@@ -294,7 +294,7 @@ text-align: center;
 
 .pagination{
  
-  position: fixed;
+ position: fixed;
  margin-bottom: 100px;
  margin-top:280px;
  background-color: red;
@@ -320,7 +320,6 @@ table{
   margin-top: 200px;
   
 }
-
 
 td{
   border: 1px black;
@@ -379,7 +378,7 @@ tbody{
   padding:10px 10px 10px 10px;
 }
 .pop{
-  
+ 
  padding-right: 20px;
   padding-left: 10px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -433,5 +432,58 @@ tbody{
   margin-left: 170px;
   
 }
+.todo{
+  width: 100%;
+  margin-top: 150px;
+  text-align: center;
+}
+.todo input{
+  padding: 6px;
+  text-align: left;
+}
+.todo button{
+  background-color: #363535;
+  color: white;
+  border-color:  #363535;
+  border-radius: 20%;
+  margin: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.todo li{
+  width: 300px;
+  color: #065784;
+  background-color: #b8bd75;
+  margin: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.todo li input{
+  text-align: left;
+  background-color: aqua;
+}
+.toList{
+  width: 50%;
+  color: #065784;
+  background-color: #9da71c;
+  margin: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  list-style-type:none;
+}
+.toList input{
+  font-size: large;
+  padding: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+}
+.clearIcon{
+ margin-top: 5px;
+ margin-right: 5px ;
+}
 
+.check:checked + li {
+  text-decoration: line-through;
+}
 

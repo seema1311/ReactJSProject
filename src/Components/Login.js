@@ -1,5 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+const hocLogin= (Componet)=>{
+     function NewFun(props){
+            const [value,setValue]=React.useState(0)
+             return (<Componet {...props} value={value}/>)
+     }
+     return NewFun
+}
 function Login(props){
         const username=React.useRef();
         const password=React.useRef();
@@ -19,7 +26,7 @@ function Login(props){
             </div>
         </div>)
 }
-export default Login
+export default hocLogin(Login)
 
 // {
             //  !this.props.valid ?<p style={{color:"red"}}>Login error !!!!</p>:<div></div>

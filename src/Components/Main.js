@@ -5,6 +5,7 @@ import Register from "./register";
 import Login from "./Login";
 import Home from "./home"
 import Photo from "./photos";
+import Todo from "./todo";
 import {_photos} from "../data/photo"
 import def from "../photos/default.png";
 import ErrorBoundary from './error'
@@ -90,19 +91,25 @@ function userLogin(user,pass){
                 <Suspense fallback={<div>Loading....</div>}>  
                 <CounterContext.Provider value={
                      {
-                             count,
+                             count:count,
                              increment:()=>setCount(count+1)
-                     }   
-                }>
+                     } }  
+                     
+                >
                 <Users onGetUsers={getuser}  {...props}/>
                 </CounterContext.Provider>
                 </Suspense>
                 
                )}/> 
+               <Route exact path ="/todo" render= {({history})=> (
+               
+                <Todo />
                 
+                )}/> 
              <div className="footer"></div>
              </ErrorBoundary>
              </div>)
       
 }
 export default Main
+ 
