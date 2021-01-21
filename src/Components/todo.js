@@ -11,10 +11,11 @@ const item=React.useRef("")
 const addItem = (evt)=>{ 
 	console.log("addItem")
 	evt.preventDefault();
-	const input=item.current.value;	
+	const input=String(item.current.value);	
 	if(input !== '' ){       
-		const li = list.filter((item)=>item.value.toLowerCase().startsWith(input.toLowerCase())) 
-        if(li.length===0){
+		const i=list.filter(item=>item.value===input)
+		console.log("i="+JSON.stringify(i))
+        if(i.length===0){
 	    const userInput = { 	
 		id : Math.random(), 
 		value : input,
@@ -24,6 +25,7 @@ const addItem = (evt)=>{
 		setAdd(true)
         } 
 	else { 
+		const li = list.filter((item)=>item.value.toLowerCase().startsWith(input.toLowerCase()))
 		   setSearchList(li)
 		   setAdd(false)
 	     }
